@@ -1,10 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { CreateRabbitmqRoomDto } from './dto/create-rabbitmq-room.dto';
 import { UpdateRabbitmqRoomDto } from './dto/update-rabbitmq-room.dto';
 
 @Injectable()
 export class RabbitmqRoomsService {
-  create(createRabbitmqRoomDto: CreateRabbitmqRoomDto) {
+
+  constructor(
+    @Inject('SOFTWARE_SERVICE') private readonly softwareClient: ClientProxy,
+  ) {
+    this.softwareClient.connect();
+  }
+
+  async create() {
+    await this.softwareClient.emit('room_created', {message: `${new Date()}`})
     return 'This action adds a new rabbitmqRoom';
   }
 
