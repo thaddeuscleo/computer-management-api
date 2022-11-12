@@ -3,6 +3,9 @@
 # ------------------------------------------------------
 
 input CreateRoomInput {
+  """Room ID"""
+  id: String = ""
+
   """Room Number"""
   roomNumber: String!
 }

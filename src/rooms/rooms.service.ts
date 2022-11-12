@@ -17,14 +17,14 @@ export class RoomsService {
     });
   }
 
-  create(input: CreateRoomInput) {
-    const res = this.prisma.room
-    .create({
+  async create(input: CreateRoomInput) {
+    const res = await this.prisma.room.create({
       data: {
         roomNumber: input.roomNumber,
       },
-    })
+    });
 
+    await this.softwareClient.emit('room_created', res);
     return res;
   }
 
