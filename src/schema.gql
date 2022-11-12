@@ -1,0 +1,35 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateRoomInput {
+  """Room Number"""
+  roomNumber: String!
+}
+
+type Mutation {
+  createRoom(createRoomInput: CreateRoomInput!): Room!
+  removeRoom(id: String!): Room!
+  updateRoom(updateRoomInput: UpdateRoomInput!): Room!
+}
+
+type Query {
+  room(id: String!): Room!
+  rooms: [Room!]!
+}
+
+type Room {
+  """Room identifier In UUID"""
+  id: String!
+
+  """Room Number"""
+  roomNumber: String!
+}
+
+input UpdateRoomInput {
+  """Room identifier In UUID"""
+  id: String!
+
+  """Room Number"""
+  roomNumber: String!
+}

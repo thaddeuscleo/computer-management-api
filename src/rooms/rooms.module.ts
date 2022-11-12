@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { RabbitmqRoomsService } from './rabbitmq-rooms.service';
-import { RabbitmqRoomsController } from './rabbitmq-rooms.controller';
+import { RoomsService } from './rooms.service';
+import { RoomsResolver } from './rooms.resolver';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Module({
   imports: [
@@ -24,7 +25,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
     ]),
   ],
-  controllers: [RabbitmqRoomsController],
-  providers: [RabbitmqRoomsService],
+  providers: [RoomsResolver, RoomsService, PrismaService],
 })
-export class RabbitmqRoomsModule {}
+export class RoomsModule {}
